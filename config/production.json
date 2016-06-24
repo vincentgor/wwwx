@@ -1,0 +1,16 @@
+{
+    "description": "这是生产环境",
+    "mysql": {
+        "host": "localhost",
+        "port": 3306,
+        "password": "uniframework",
+        "username": "uniframework",
+        "database": "storyShare"
+    },
+    "redis": {
+        "host": "localhost",
+        "password": "uniframework",
+        "username": "uniframework",
+        "database": "storyShare"
+    }
+}

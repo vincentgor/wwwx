@@ -1,0 +1,6 @@
+一： 设置 应用 环境
+生产环境： SET NODE_ENV=production
+开发环境： SET NODE_ENV=development
+
+二： 设置 端口
+set PORT=port
