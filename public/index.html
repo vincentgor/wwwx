@@ -2,9 +2,96 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>问卷调查</title>
+    <link href="/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
 </head>
 <body>
-首页
+<div style="text-align: center"><h1>问卷调查</h1></div>
+<br />
+<div id="app" style="font-size: 20px">
+
+    <div id="oneone" class="form-group">
+        1 亲亲的淘宝会员名（旺旺名）是什么呢？<br />
+        <input type="text" class="form-control" placeholder="请输入你的旺旺名" style="font-size: 23px" /><br /><br />
+    </div>
+
+
+    <div id="twotwo" class="form-group">
+        2 亲亲的收件手机号码是多少呢？<br />
+        <input type="text" class="form-control" placeholder="请输入你的手机号码" style="font-size: 23px"/><br /><br />
+    </div>
+
+    <div id="threethree">
+        3 亲亲的年龄？<br />
+        <select style="font-size: 23px">
+            <option value="25岁以下">25岁以下</option>
+            <option value="26-35岁">26-35岁</option>
+            <option value="36-45岁">36-45岁</option>
+            <option value="45岁以上">45岁以上</option>
+        </select><br />
+
+        <input type="radio" name="q4" id="one3" text="25岁以下" />
+        <label for="one3">25岁以下</label><br />
+        <input type="radio" name="q4"id="two3" value="26-35岁" />
+        <label for="two3">26-35岁</label><br />
+        <input type="radio" name="q4"id="three3" value="36-45岁" />
+        <label for="three3">36-45岁</label><br />
+        <input type="radio" name="q4"id="four3" value="45岁以上" />
+        <label for="four3">45岁以上</label><br />
+    </div>
+    <br /><br />
+
+    <div id="fourfour">
+        4 亲亲试穿鞋子合适舒服吗？<br />
+        <select style="font-size: 23px">
+            <option value="非常满意">非常满意</option>
+            <option value="满意">满意</option>
+            <option value="一般">一般</option>
+            <option value="不满意">不满意</option>
+            <option value="非常不满意">非常不满意</option>
+        </select><br />
+
+        <input type="radio" name="q4" id="one4" text="非常满意" />
+        <label for="one4">非常满意</label><br />
+        <input type="radio" name="q4"id="two4" value="满意" />
+        <label for="two4">满意</label><br />
+        <input type="radio" name="q4"id="three4" value="一般" />
+        <label for="three4">一般</label><br />
+        <input type="radio" name="q4"id="four4" value="不满意" />
+        <label for="four4">不满意</label><br />
+        <input type="radio" name="q4"id="five4" value="非常不满意" />
+        <label for="five4">非常不满意</label><br />
+    </div>
+    <br /><br />
+
+
+
+    <div id="fivefive">
+        5 亲亲从哪里知道路施南的？<br />
+        <input type="radio" name="q5" id="one5" text="朋友推荐" />
+        <label for="one5">朋友推荐</label><br />
+        <input type="radio" name="q5"id="two5" value="淘宝搜索" />
+        <label for="two5">淘宝搜索</label><br />
+        <input type="radio" name="q5"id="three5" value="单位指定" />
+        <label for="three5">单位指定</label><br />
+        <input type="radio" name="q5"id="four5" value="其他" />
+        <label for="four5">其他<input type="text" placeholder="请输入..." style="font-size: 23px"/></label><br />
+    </div>
+
+    <br />
+    <div style="text-align: center">
+        <input type="button" value="提交" id="submit" class="btn btn-default btn-lg" />
+        <!--<input type="button" value="重置" id="reset" />-->
+    </div>
+
+    <br /><br /><br /><br /><br />
+
+</div>
 </body>
+
+<script src="/jquery/dist/jquery.js"></script>
+<script src="/bootstrap/dist/js/bootstrap.js"></script>
+<script src="/js/index.js"></script>
+
 </html>
