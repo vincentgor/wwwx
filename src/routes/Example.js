@@ -6,6 +6,6 @@ const loginCheck = require('./../middleware/loginCheck');
 
 module.exports = function (router) {
 
-    router.get('/', loginCheck.checkOffLine, exampleController.add);
+    router.all('/', loginCheck.checkOffLine, exampleController.add);
 
 };
