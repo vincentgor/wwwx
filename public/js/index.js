@@ -2,15 +2,12 @@
 // 提交
 $("#submit").click(function(){
 
-    alert('准备提交');
-
     $.ajax({
         type: "POST",
         dataType: "json",
         url: '/api/v1/questionnaire',
         success: function (data) {
             alert(JSON.stringify(data));
-            alert('提交成功');
             console.log(data);
             location.href = '/redpackage.html';
         },
@@ -31,15 +28,12 @@ $("#getRedPackage").click(function(){
         return;
     }
 
-    alert('准备领取');
-
     $.ajax({
         type: "POST",
         dataType: "json",
         url: '/api/v1/red',
         success: function (data) {
             alert(JSON.stringify(data));
-            alert('领取成功');
             console.log(data);
             location.href = '/';
         },
