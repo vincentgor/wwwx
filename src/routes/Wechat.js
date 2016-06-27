@@ -8,18 +8,21 @@ const Promise = require('bluebird');
 const Request = require('request');
 
 const requestGet = Promise.promisify(Request.get);
-const requestPost = Promise.promisify(Request.post);
 
 module.exports = function (router) {
 
     // 验证登录
     router.get('/login', function* (next) {
+        let callback = this.query.callback;
+        callback = callback || this.request.originalUrl;
+        console.log('callback', callback);
+        console.log(666666666666666666666, this.session.openid);
         if (!this.session.openid) {
             let url = encodeURIComponent('https://wwwx-vincent-gor.c9users.io/api/v1/wechat/accesstoken');
             console.log(url);
             this.body = {
                 code: 1,
-                url: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx645b499c4950a4c3&redirect_uri=` + url + `&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+                url: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx645b499c4950a4c3&redirect_uri=` + url + `&response_type=code&scope=snsapi_userinfo&state=` + callback + `#wechat_redirect`
             };
             return;
         } else {
@@ -46,16 +49,22 @@ module.exports = function (router) {
     // 回调（请求参数 code， 进而获取 access_token）
     router.get('/accesstoken', function* (next) {
         let code = this.query.code;
+        let state = this.query.state;
         var url = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx645b499c4950a4c3&secret=8ed61397d934d4af3bcb4419acf3e83c&code=`+ code + `&grant_type=authorization_code`;
         console.log('url', url);
         let result = yield requestGet(url).then((result) => {
-            
             return JSON.parse(result.body);
         });
         console.log('result', typeof result);
         let lalala = yield getFans(result.access_token, result.openid);
         this.session.openid = result.openid;
-        this.body = lalala;
+        // this.body = lalala;
+        if (state) {
+            this.redirect(state);
+        } else {
+            this.body = lalala;
+        }
+        
     });
 
 };

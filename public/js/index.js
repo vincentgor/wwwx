@@ -9,7 +9,7 @@
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: '/api/v1/wechat/login',
+        url: '/api/v1/wechat/login?callback=' + location.href,
         success: function (data) {
             console.log(data);
             if (data.code) {
@@ -18,7 +18,7 @@
             }
         },
         error: function (err) {
-            alert(JSON.stringify(err))
+            alert(JSON.stringify(err));
         }
     });
 })();
