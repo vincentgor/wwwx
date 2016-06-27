@@ -14,12 +14,12 @@ module.exports = function (router) {
 
     // 验证登录
     router.get('/login', function* (next) {
-        if (!this.session.code) {
+        if (!this.session.openid) {
             let url = encodeURIComponent('https://wwwx-vincent-gor.c9users.io/api/v1/wechat/accesstoken');
             console.log(url);
             this.body = {
                 code: 1,
-                url: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx645b499c4950a4c3&redirect_uri=` + url + `&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect`
+                url: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx645b499c4950a4c3&redirect_uri=` + url + `&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
             };
             return;
         } else {
@@ -54,6 +54,7 @@ module.exports = function (router) {
         });
         console.log('result', typeof result);
         let lalala = yield getFans(result.access_token, result.openid);
+        this.session.openid = result.openid;
         this.body = lalala;
     });
 

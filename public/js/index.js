@@ -1,4 +1,28 @@
 
+// $(document).ready(() => {
+//     alert(324);
+//     login();
+// });
+
+// 登录授权
+(function () {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: '/api/v1/wechat/login',
+        success: function (data) {
+            console.log(data);
+            if (data.code) {
+                // 没有登录
+                location.href = data.url;
+            }
+        },
+        error: function (err) {
+            alert(JSON.stringify(err))
+        }
+    });
+})();
+
 // 提交
 $("#submit").click(function(){
 
@@ -19,6 +43,7 @@ $("#submit").click(function(){
 
 });
 
+// 领取红包
 $("#getRedPackage").click(function(){
 
     var randomCode = $('#random').val();
