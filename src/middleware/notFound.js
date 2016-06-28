@@ -1,10 +1,10 @@
 /*!
  * Created by vinxent on 2016/5/26.
  */
- 
+
 'use strict';
 
-function Page404 () {
+function Page404() {
 
 }
 

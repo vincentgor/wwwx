@@ -1,7 +1,7 @@
 /*!
  * Created by vinxent on 2016/5/26.
  */
- 
+
 'use strict';
 
 const questionnaireService = require('./../service/Questionnaire');

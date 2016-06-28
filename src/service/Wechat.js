@@ -52,7 +52,7 @@ Wechat.prototype.getAccessToken = function (accessTokenUrl) {
         console.log(result.body);
         return JSON.parse(result.body);
     });
-    
+
 };
 
 // 获取用户详情

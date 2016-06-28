@@ -53,13 +53,13 @@ app.use(notFound.dealWith);
  * 数据库初始化
  */
 //models.sequelize.sync().then(function () {
-    console.log('数据库构建完成');
-    if (!module.parent) {
-        app.listen(PORT, function () {
-            console.log('server is listening', PORT);
-        });
-        app.on('error', onError);
-    }
+console.log('数据库构建完成');
+if (!module.parent) {
+    app.listen(PORT, function () {
+        console.log('server is listening', PORT);
+    });
+    app.on('error', onError);
+}
 //});
 
 /**

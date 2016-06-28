@@ -1,12 +1,12 @@
 /**
  * Created by vinxent on 2016/5/26.
  */
- 
+
 'use strict';
 
 class Check {
 
-    constructor () {
+    constructor() {
 
         this.checkOnLine = function* (next) {
             console.log('看看我是否在线');

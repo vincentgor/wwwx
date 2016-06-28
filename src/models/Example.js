@@ -53,7 +53,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true,
             field: 'city_code',
-            references  : {model: 'tbl_city', key: 'code'},
+            references: {model: 'tbl_city', key: 'code'},
             onUpdate: 'CASCADE',
             comment: "城市代号"
         },
