@@ -12,5 +12,15 @@
         "password": "uniframework",
         "username": "uniframework",
         "database": "storyShare"
-    }
+    },
+    "wechat": {
+        "appid": "wx645b499c4950a4c3",
+        "secret": "8ed61397d934d4af3bcb4419acf3e83c",
+        "callback": "/api/v1/wechat/accesstoken",
+        "userinfo":  "https://api.weixin.qq.com/sns/userinfo?access_token=<%= access_token %>&openid=<%= openid %>&lang=<%= lang %>",
+        "access_token": "https://api.weixin.qq.com/sns/oauth2/access_token?appid=<%= appid %>&secret=<%= secret %>&code=<%= code %>&grant_type=authorization_code",
+        "authorize": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=<%= appid %>&redirect_uri=<%= redirect_uri %>&response_type=code&scope=<%= scope %>&state=<%= state %>#wechat_redirect"
+    },
+
+    "url": "https://wwwx-vincent-gor.c9users.io"
 }

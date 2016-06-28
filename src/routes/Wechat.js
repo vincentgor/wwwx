@@ -6,6 +6,8 @@
 
 const Promise = require('bluebird');
 const Request = require('request');
+const _ = require('lodash');
+const config = require('config');
 
 const requestGet = Promise.promisify(Request.get);
 
@@ -16,15 +18,19 @@ module.exports = function (router) {
         let callback = this.query.callback;
         callback = callback || this.request.originalUrl;
         console.log('callback', callback);
-        console.log(666666666666666666666, this.session.openid);
+        console.log('openid', this.session.openid);
         if (!this.session.openid) {
-            let url = encodeURIComponent('https://wwwx-vincent-gor.c9users.io/api/v1/wechat/accesstoken');
-            console.log(url);
+            let url = encodeURIComponent(config.url + config.wechat.callback);
+            console.log('url', url);
+            let authorizeUrl = config.wechat.authorize;
+            authorizeUrl = authorizeUrl.replace('<%= appid %>', config.wechat.appid);
+            authorizeUrl = authorizeUrl.replace('<%= redirect_uri %>', url);
+            authorizeUrl = authorizeUrl.replace('<%= scope %>', 'snsapi_userinfo');
+            authorizeUrl = authorizeUrl.replace('<%= state %>', callback);
             this.body = {
                 code: 1,
-                url: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx645b499c4950a4c3&redirect_uri=` + url + `&response_type=code&scope=snsapi_userinfo&state=` + callback + `#wechat_redirect`
+                url: authorizeUrl
             };
-            return;
         } else {
             this.body = {
                 code: 0,
