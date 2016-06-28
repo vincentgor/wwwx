@@ -27,6 +27,7 @@ module.exports = function (router) {
             authorizeUrl = authorizeUrl.replace('<%= redirect_uri %>', url);
             authorizeUrl = authorizeUrl.replace('<%= scope %>', 'snsapi_userinfo');
             authorizeUrl = authorizeUrl.replace('<%= state %>', callback);
+            console.log('authorizeUrl', authorizeUrl);
             this.body = {
                 code: 1,
                 url: authorizeUrl
@@ -39,14 +40,14 @@ module.exports = function (router) {
         }
     });
 
-    let getFans = function(access_token, openid, lang ) {
+    let getFans = function(access_token, openid, lang) {
         lang = lang || 'zh_CN';
-        let url = 'https://api.weixin.qq.com/sns/userinfo?access_token={access_token}&openid={openid}&lang={lang}';
-        url = url.replace('{access_token}', access_token);
-        url = url.replace('{openid}', openid);
-        url = url.replace('{lang}', lang);
-        console.log('url', url);
-        return requestGet(url).then((result) => {
+        let userinfoUrl = config.wechat.userinfo;
+        userinfoUrl = userinfoUrl.replace('<%= access_token %>', access_token);
+        userinfoUrl = userinfoUrl.replace('<%= openid %>', openid);
+        userinfoUrl = userinfoUrl.replace('<%= lang %>', lang);
+        console.log('userinfoUrl', userinfoUrl);
+        return requestGet(userinfoUrl).then((result) => {
             console.log(result.body);
             return result.body;
         });
@@ -56,9 +57,12 @@ module.exports = function (router) {
     router.get('/accesstoken', function* (next) {
         let code = this.query.code;
         let state = this.query.state;
-        var url = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx645b499c4950a4c3&secret=8ed61397d934d4af3bcb4419acf3e83c&code=`+ code + `&grant_type=authorization_code`;
-        console.log('url', url);
-        let result = yield requestGet(url).then((result) => {
+        let accessTokenUrl = config.wechat.access_token;
+        accessTokenUrl = accessTokenUrl.replace('<%= appid %>', config.wechat.appid);
+        accessTokenUrl = accessTokenUrl.replace('<%= secret %>', config.wechat.secret);
+        accessTokenUrl = accessTokenUrl.replace('<%= code %>', code);
+        console.log('accessTokenUrl', accessTokenUrl);
+        let result = yield requestGet(accessTokenUrl).then((result) => {
             return JSON.parse(result.body);
         });
         console.log('result', typeof result);
