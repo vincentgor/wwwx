@@ -21,7 +21,7 @@
             alert(JSON.stringify(err));
         }
     });
-})();
+});
 
 // 提交
 $("#submit").click(function(){
@@ -44,7 +44,7 @@ $("#submit").click(function(){
 });
 
 // 领取红包
-$("#getRedPackage").click(function(){
+$("#hongbao").click(function(){
 
     var randomCode = $('#random').val();
 
