@@ -60,7 +60,8 @@ $("#hongbao").click(function(){
         success: function (data) {
             alert(JSON.stringify(data));
             console.log(data);
-            location.href = '/';
+            letDivHide("#redPage");
+            letDivCenter("#personalDiv");
         },
         error: function (err) {
             alert(JSON.stringify(err))
@@ -68,3 +69,17 @@ $("#hongbao").click(function(){
     })
 
 });
+
+// 让指定的DIV始终显示在屏幕正中间 
+function letDivCenter(divName){   
+    var top = ($(window).height() - $(divName).height())/2;   
+    var left = ($(window).width() - $(divName).width())/2;   
+    var scrollTop = $(document).scrollTop();   
+    var scrollLeft = $(document).scrollLeft();   
+    $(divName).css( { position : 'absolute', 'top' : top + scrollTop, left : left + scrollLeft } ).show();  
+}  
+
+// 让指div消失
+function letDivHide(divName){   
+    $(divName).hide();
+}  
